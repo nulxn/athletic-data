@@ -28,6 +28,30 @@ async function beginzecode() {
       _res.teams = sortable;
       _res.athletes = parsed.prs;
 
+      var graphData = [];
+      _res.teams.forEach((team) => {
+        var boiler = { team: team[0], score: team[1].score };
+        graphData.push(boiler);
+      });
+
+      new Chart(document.getElementById("teamScores"), {
+        type: "bar",
+        data: {
+          labels: graphData.map((row) => row.team),
+          datasets: [
+            {
+              label: "Team Scores",
+              data: graphData.map((row) => row.score),
+            },
+          ],
+        },
+      });
+
+      var table = new Tabulator("#example-table", {
+        data: _res.athletes,
+        autoColumns: true,
+      });
+
       console.log(_res);
     } else if (typeof json._source.r !== "undefined") {
       console.log("this meet already happened!");
