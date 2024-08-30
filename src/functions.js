@@ -10,7 +10,8 @@ async function fetchUserData(id, sport) {
 async function processRacers(meet) {
   var prs = [];
 
-  const promises = meet._source.en.map(async (racer) => {
+  const promises = meet._source.en.map(async (racer, arr) => {
+    console.log("Process Racers: " + arr);
     if (typeof racer.a.ani !== "undefined") {
       const results = await fetchUserData(racer.a.ani, "tf");
       const res = results.data;

@@ -1,0 +1,46 @@
+{
+  "Del Norte": [
+    "background-color: rgb(15, 69, 9);",
+    "background-color: rgb(27, 22, 64);"
+  ],
+  "Carlsbad": [
+    "background-color: rgb(248, 248, 248);",
+    "background-color: rgb(74, 12, 118);"
+  ],
+  "Calexico": [
+    "background-color: rgb(248, 248, 248);",
+    "background-color: rgb(119, 11, 11);"
+  ],
+  "Westview": [
+    "background-color: rgb(185, 163, 106);",
+    "background-color: rgb(24, 23, 23);"
+  ],
+  "Mission Hills": [
+    "background-color: rgb(185, 163, 106);",
+    "background-color: rgb(119, 11, 12);"
+  ],
+  "Mission Vista": [
+    "background-color: rgb(15, 69, 9);",
+    "background-color: rgb(24, 23, 23);"
+  ],
+  "Mt Carmel": [
+    "background-color: rgb(255, 179, 0);",
+    "background-color: rgb(206, 5, 5);"
+  ],
+  "Del Lago Academy": [
+    "background-color: rgb(251, 106, 0);",
+    "background-color: rgb(0, 112, 128);"
+  ],
+  "Cambridge": [
+    "background-color: rgb(251, 106, 0);",
+    "background-color: rgb(255, 179, 0);"
+  ],
+  "Canyon Crest Academy": [
+    "background-color: rgb(24, 23, 23);",
+    "background-color: rgb(206, 5, 5);"
+  ],
+  "Calvin Christian": [
+    "background-color: rgb(56, 156, 255);",
+    "background-color: rgb(24, 23, 23);"
+  ]
+}

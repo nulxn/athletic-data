@@ -1,6 +1,7 @@
 console.clear();
 
 async function beginzecode() {
+  console.log("code haz begun");
   try {
     const response = await axios.get(
       `https://athleticlive.blob.core.windows.net/$web/ind_ent_list/_doc/${
@@ -46,23 +47,33 @@ async function beginzecode() {
             {
               label: "Team Scores",
               data: graphData.map((row) => row.score),
-              /**
-              backgroundColor: graphData.map((row) => {
-                var rgbs = nameToColor(row.colors[0].toLowerCase());
-                if (rgbs) {
-                  return rgbs;
-                } else {
-                  return "rgba(153, 102, 255, 0.2)";
+              backgroundColor: graphData.map(
+                (row) => `${nameToColor(row.colors[0], row.team)}, 0.9)`
+              ),
+              borderColor: graphData.map((row) => {
+                if (row.colors.length === 2 || row.colors.includes(null))
+                  return `${nameToColor(row.colors[1], row.team)}, 0.95)`;
+                else {
+                  return `${nameToColor(row.colors[2], row.team)}, 1)`;
                 }
               }),
-              */
+              borderWidth: 4,
             },
           ],
         },
       });
 
+      var tableData = [];
+      _res.athletes.forEach((pers) => {
+        var boiler = {
+          name: pers.name,
+          pr: pers.pr,
+          school: pers.school.name,
+        };
+        tableData.push(boiler);
+      });
       var table = new Tabulator("#example-table", {
-        data: _res.athletes,
+        data: tableData,
         autoColumns: true,
       });
 
