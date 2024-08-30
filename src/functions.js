@@ -19,7 +19,7 @@ async function processRacers(meet) {
           prs.push({
             name: racer.a.n,
             pr: race.Result,
-            school: racer.a.t.f,
+            school: { name: racer.a.t.f, id: racer.a.t.ani },
           });
         }
       });
@@ -44,7 +44,7 @@ function timeStringToSeconds(timeStr) {
   return totalSeconds;
 }
 
-function sortPRs(input) {
+async function sortPRs(input) {
   let data = JSON.parse(input);
 
   data.prs.sort((a, b) => {
@@ -55,17 +55,22 @@ function sortPRs(input) {
 
   var places = {};
 
-  data.prs.forEach((item, arr) => {
-    if (places[item.school]) {
-      places[item.school].athletes++;
-      if (places[item.school].athletes < 6) {
-        let newArr = arr + 1;
-        places[item.school].score += newArr;
+  for (const [index, item] of data.prs.entries()) {
+    var escuela = item.school.name;
+
+    if (places[escuela]) {
+      places[escuela].athletes++;
+      if (places[escuela].athletes < 6) {
+        places[escuela].score += index + 1;
       }
     } else {
-      places[item.school] = { score: arr + 1, athletes: 1 };
+      var colores = await axios.get(
+        `https://www.athletic.net/api/v1/TeamNav/Team?team=${item.school.id}&sport=xc&season=2024`
+      );
+      var colors = colores.data.team.colors;
+      places[escuela] = { score: index + 1, athletes: 1, colors: colors };
     }
-  });
+  }
 
   return JSON.stringify({ places: places, prs: data.prs }, null, 2);
 }

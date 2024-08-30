@@ -11,7 +11,7 @@ async function beginzecode() {
 
     if (typeof json._source.en !== "undefined") {
       const prs = await processRacers(json);
-      const sortedResults = sortPRs(prs);
+      const sortedResults = await sortPRs(prs);
       var parsed = JSON.parse(sortedResults);
 
       var validEntries = {};
@@ -30,7 +30,11 @@ async function beginzecode() {
 
       var graphData = [];
       _res.teams.forEach((team) => {
-        var boiler = { team: team[0], score: team[1].score };
+        var boiler = {
+          team: team[0],
+          score: team[1].score,
+          colors: team[1].colors,
+        };
         graphData.push(boiler);
       });
 
@@ -42,6 +46,16 @@ async function beginzecode() {
             {
               label: "Team Scores",
               data: graphData.map((row) => row.score),
+              /**
+              backgroundColor: graphData.map((row) => {
+                var rgbs = nameToColor(row.colors[0].toLowerCase());
+                if (rgbs) {
+                  return rgbs;
+                } else {
+                  return "rgba(153, 102, 255, 0.2)";
+                }
+              }),
+              */
             },
           ],
         },
