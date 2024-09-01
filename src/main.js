@@ -11,7 +11,10 @@ async function beginzecode() {
     const json = response.data;
 
     if (typeof json._source.en !== "undefined") {
-      const prs = await processRacers(json);
+      const prs = await processRacers(
+        json,
+        Number(document.getElementById("events").value)
+      );
       const sortedResults = await sortPRs(prs);
       var parsed = JSON.parse(sortedResults);
 

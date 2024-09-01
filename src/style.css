@@ -1,0 +1,105 @@
+:root {
+  --bg: #44475a;
+  --fg: #f8f8f2;
+  --text: #ffffff;
+  --accent: rgb(149, 128, 255);
+  --comment: #6272a4;
+  --darker: #282a36;
+}
+
+@font-face {
+  font-family: "Fira Code";
+  src: url(FiraCode-VariableFont_wght.ttf);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: inherit;
+  font-family: "Fira Code";
+}
+
+html {
+  font-family: "Fira Code";
+  color: var(--text);
+}
+
+body {
+  padding-top: 80px;
+  background-color: var(--bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  width: 100%;
+  background-color: var(--darker);
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.inside {
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: 600;
+  border: 2px solid var(--accent);
+  color: var(--darker);
+}
+
+input.inside {
+  width: 200px;
+}
+
+label.inside {
+  font-weight: bold;
+  color: var(--accent);
+}
+
+select.inside {
+  width: 150px;
+}
+
+button.inside {
+  appearance: none;
+  background-color: var(--accent);
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+button.inside:hover {
+  box-shadow: 0 8px 15px rgba(149, 128, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+button.inside:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+button.inside:disabled {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+input:focus,
+select:focus,
+button:focus {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}

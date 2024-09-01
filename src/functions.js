@@ -7,23 +7,36 @@ async function fetchUserData(id, sport) {
   return response;
 }
 
-async function processRacers(meet) {
+async function processRacers(meet, ev) {
   var prs = [];
 
   const promises = meet._source.en.map(async (racer, arr) => {
-    console.log("Process Racers: " + arr);
     if (typeof racer.a.ani !== "undefined") {
-      const results = await fetchUserData(racer.a.ani, "tf");
+      const results = await fetchUserData(racer.a.ani, ev > 100 ? "xc" : "tf");
       const res = results.data;
-      res.resultsTF.forEach((race) => {
-        if (race.EventID == 60 && race.PersonalBest == 14) {
-          prs.push({
-            name: racer.a.n,
-            pr: race.Result,
-            school: { name: racer.a.t.f, id: racer.a.t.ani },
-          });
-        }
-      });
+      if (ev < 100) {
+        var lols = res.resultsTF;
+        lols.forEach((race) => {
+          if (race.EventID == ev && race.PersonalBest == 14) {
+            prs.push({
+              name: racer.a.n,
+              pr: race.Result,
+              school: { name: racer.a.t.f, id: racer.a.t.ani },
+            });
+          }
+        });
+      } else {
+        var lols = res.resultsXC;
+        lols.forEach((race) => {
+          if (race.Distance == ev && race.PersonalBest == true) {
+            prs.push({
+              name: racer.a.n,
+              pr: race.Result,
+              school: { name: racer.a.t.f, id: racer.a.t.ani },
+            });
+          }
+        });
+      }
     }
   });
 
