@@ -1,4 +1,7 @@
 # athletic-data
+![GitHub Repo stars](https://img.shields.io/github/stars/nulxn/athletic-data?style=for-the-badge&labelColor=%2344475a&color=%23bd93f9)
+![GitHub License](https://img.shields.io/github/license/nulxn/athletic-data?style=for-the-badge&labelColor=%2344475a&color=%23ff5555)
+
 Simulates race results and placing based on PRs
 
 ## Usage
