@@ -20,6 +20,29 @@
   font-family: "Fira Code";
 }
 
+.location-link {
+  text-decoration: none;
+  color: var(--accent);
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid var(--accent);
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.location-link:hover {
+  background-color: var(--accent);
+  color: var(--text);
+}
+
+.location-link:active {
+  background-color: var(--darker);
+  color: var(--text);
+}
+
 html {
   font-family: "Fira Code";
   color: var(--text);
@@ -48,6 +71,10 @@ nav {
   display: flex;
   align-items: center;
   gap: 15px;
+}
+
+nav > .location-link {
+  margin-right: auto;
 }
 
 .inside {

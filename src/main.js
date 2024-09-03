@@ -54,7 +54,11 @@ async function beginzecode() {
                 (row) => `${nameToColor(row.colors[0], row.team)}, 0.9)`
               ),
               borderColor: graphData.map((row) => {
-                if (row.colors.length === 2 || row.colors.includes(null))
+                if (
+                  row.colors.length === 2 ||
+                  row.colors.includes(null) ||
+                  row.colors.includes("null")
+                )
                   return `${nameToColor(row.colors[1], row.team)}, 0.95)`;
                 else {
                   return `${nameToColor(row.colors[2], row.team)}, 1)`;
