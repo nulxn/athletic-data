@@ -34,7 +34,7 @@ Athletic-data will then sort through each team and assign them a score based on 
 
 **Building:**
 
-- Install [Gulp]() with `npm i`
+- Install [Gulp](https://github.com/gulpjs/gulp) with `npm i`
 - Run `npx gulp`
 - Paste the font file from `src` to `dist/fonts` because gulp breaks the font file (to be fixed)
 
