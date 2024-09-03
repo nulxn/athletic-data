@@ -78,6 +78,11 @@ async function beginzecode() {
       var table = new Tabulator("#example-table", {
         data: tableData,
         autoColumns: true,
+        pagination: "local",
+        paginationSize: 10,
+        paginationSizeSelector: [10, 20, 30],
+        movableColumns: true,
+        layout: "fitColumns",
       });
 
       console.log(_res);

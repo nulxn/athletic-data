@@ -103,3 +103,30 @@ button:focus {
   outline: 3px solid var(--accent);
   outline-offset: 3px;
 }
+
+.tabulator {
+  font-family: Arial, sans-serif;
+  background-color: var(--darker);
+  color: var(--fg);
+}
+.tabulator .tabulator-header {
+  background-color: var(--bg);
+  color: var(--fg);
+}
+.tabulator .tabulator-row {
+  background-color: var(--darker);
+}
+.tabulator .tabulator-row:nth-child(even) {
+  background-color: var(--bg);
+}
+.tabulator .tabulator-cell {
+  color: var(--fg);
+}
+.tabulator .tabulator-pager {
+  background-color: var(--bg);
+  color: var(--fg);
+}
+.tabulator .tabulator-pager .tabulator-pager-control {
+  background-color: var(--accent);
+  color: var(--darker);
+}
