@@ -64,6 +64,78 @@ async function beginzecode() {
             },
           ],
         },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              labels: {
+                color: "#f8f8f2",
+                font: {
+                  size: 14,
+                  family: "Arial, sans-serif",
+                },
+              },
+            },
+            tooltip: {
+              backgroundColor: "#44475a",
+              titleColor: "#f8f8f2",
+              bodyColor: "#f8f8f2",
+              borderColor: "#bd93f9",
+              borderWidth: 2,
+              padding: 10,
+              caretSize: 6,
+            },
+          },
+          scales: {
+            x: {
+              ticks: {
+                color: "#f8f8f2",
+                font: {
+                  size: 12,
+                },
+              },
+              grid: {
+                color: "#44475a",
+                borderColor: "#282a36",
+                borderWidth: 1,
+              },
+            },
+            y: {
+              ticks: {
+                color: "#f8f8f2",
+                font: {
+                  size: 12,
+                },
+              },
+              grid: {
+                color: "#44475a",
+                borderColor: "#282a36",
+                borderWidth: 1,
+              },
+            },
+          },
+          elements: {
+            point: {
+              radius: 4,
+              backgroundColor: "#bd93f9",
+              borderColor: "#f8f8f2",
+              borderWidth: 1,
+            },
+            line: {
+              borderColor: "#bd93f9",
+              borderWidth: 2,
+            },
+          },
+          layout: {
+            padding: {
+              left: 20,
+              right: 20,
+              top: 20,
+              bottom: 20,
+            },
+          },
+          backgroundColor: "#282a36",
+        },
       });
 
       var tableData = [];
