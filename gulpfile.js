@@ -42,7 +42,7 @@ function styles() {
     .pipe(
       replace(
         "url(FiraCode-VariableFont_wght.ttf)",
-        "url(/fonts/FiraCode-VariableFont_wght.ttf)"
+        "url(../fonts/FiraCode-VariableFont_wght.ttf)"
       )
     )
     .pipe(gulp.dest(paths.styles.dest));
