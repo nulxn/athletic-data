@@ -20,7 +20,9 @@ const paths = {
   },
   pages: {
     src: "src/index.html",
+    settingsSrc: "src/settings/index.html",
     dest: "dist/",
+    settingsDest: "dist/settings/",
   },
   fonts: {
     src: "src/FiraCode-VariableFont_wght.ttf",
@@ -66,7 +68,10 @@ function pages() {
     )
     .pipe(replace('src="main.js"', 'src="js/main.js"'))
     .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
-    .pipe(gulp.dest(paths.pages.dest));
+    .pipe(gulp.dest(paths.pages.dest))
+    .pipe(gulp.src(paths.pages.settingsSrc))
+    .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
+    .pipe(gulp.dest(paths.pages.settingsDest));
 }
 
 function fonts() {
@@ -76,7 +81,7 @@ function fonts() {
 function watchFiles() {
   gulp.watch(paths.scripts.src, scripts);
   gulp.watch(paths.styles.src, styles);
-  gulp.watch(paths.pages.src, pages);
+  gulp.watch([paths.pages.src, paths.pages.settingsSrc], pages);
 }
 
 const build = gulp.series(gulp.parallel(scripts, styles, pages, fonts));
