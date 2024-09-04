@@ -1,0 +1,77 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><title>settings : athletic-data</title><link rel="stylesheet" href="../style.css"></head><style>.settings-container {
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: var(--darker);
+      color: var(--text);
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      border: 2px solid var(--fg);
+      transform: translateY(0);
+      transition: transform 0.3s ease, background-color 0.3s, border-color 0.3s;
+    }
+
+    .settings-container:hover {
+      border-color: var(--accent);
+      transform: translateY(-10px);
+    }
+
+    .settings-container h1 {
+      margin-bottom: 20px;
+      font-size: 2em;
+    }
+
+    .settings-section {
+      margin-bottom: 30px;
+    }
+
+    .settings-section h2 {
+      margin-bottom: 10px;
+      font-size: 1.5em;
+    }
+
+    .settings-section form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .settings-section select {
+      width: 100%;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background-color: var(--darker);
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+    }
+
+    .location-link {
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: bold;
+      padding: 10px;
+      border-radius: 5px;
+      border: 2px solid var(--accent);
+      display: inline-flex;
+      align-items: center;
+      height: 100%;
+      transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    }
+
+    .location-link:hover {
+      background-color: var(--accent);
+      color: var(--text);
+    }
+
+    .location-link:active {
+      background-color: var(--darker);
+      color: var(--text);
+    }</style><body><nav><a class="location-link" href="/">Home</a></nav><main class="settings-container"><h1>Settings</h1><section class="settings-section"><h2>Choose a Theme</h2><form id="theme-form"><select class="inside" id="theme-select"><option value="theme1">Theme 1</option><option value="theme2">Theme 2</option><option value="theme3">Theme 3</option></select></form></section><section class="settings-section"><h2>Select Language</h2><form id="language-form"><select class="inside" id="language-select"><option value="en-us">English (US)</option><option value="en-gb">English (UK)</option></select></form></section></main></body></html>
