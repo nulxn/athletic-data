@@ -124,18 +124,20 @@
     </main>
 
     <script>
-      console.log(JSON.parse(localStorage.getItem("settings")).theme);
-      if (localStorage.getItem("settings") !== null) {
-        applyTheme(JSON.parse(localStorage.getItem("settings")).theme);
-      } else {
-        applyTheme("theme1");
-      }
-
-      var lang = document.getElementById("language-select").value;
-      var theme = document.getElementById("theme-select").value;
+      document.addEventListener("DOMContentLoaded", () => {
+        const savedSettings = localStorage.getItem("settings");
+        if (savedSettings) {
+          const settings = JSON.parse(savedSettings);
+          applyTheme(settings.theme);
+          document.getElementById("language-select").value =
+            settings.lang || "en-us";
+        } else {
+          applyTheme("theme1");
+        }
+      });
 
       function applyTheme(theme) {
-        var themes = {
+        const themes = {
           theme1: {
             "--bg": "#44475a",
             "--fg": "#f8f8f2",
@@ -154,24 +156,40 @@
           },
         };
 
-        var themeVariables = themes[theme] || themes["theme1"];
+        const themeVariables = themes[theme] || themes["theme1"];
+        const root = document.documentElement;
 
-        var root = document.documentElement;
-
-        for (var variable in themeVariables) {
+        for (const variable in themeVariables) {
           if (themeVariables.hasOwnProperty(variable)) {
             root.style.setProperty(variable, themeVariables[variable]);
           }
         }
+
+        if (theme === "theme2") {
+          document
+            .getElementById("theme-select")
+            .style.setProperty("color", themes["theme2"]["--text"]);
+
+          document
+            .getElementById("language-select")
+            .style.setProperty("color", themes["theme2"]["--text"]);
+        } else {
+          document.getElementById("theme-select").style.removeProperty("color");
+          document
+            .getElementById("language-select")
+            .style.removeProperty("color");
+        }
       }
 
       function saveOptions() {
-        var settings = {
+        const lang = document.getElementById("language-select").value;
+        const theme = document.getElementById("theme-select").value;
+
+        const settings = {
           lang: lang,
           theme: theme,
         };
 
-        console.log(settings);
         applyTheme(settings.theme);
         localStorage.setItem("settings", JSON.stringify(settings));
       }

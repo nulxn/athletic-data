@@ -1,1 +1,52 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><title>athletic-data</title><link rel="stylesheet" href="css/style.css"></head><body><nav><a class="location-link" href="settings/">Settings</a> <input class="inside" placeholder="MeetID" id="meetinput"> <label class="inside" for="events">Choose an event:</label> <select class="inside" id="events"><option value="3218">XC 2 Mile</option><option value="4828">XC 3 Mile</option><option value="5000">XC 5k</option><option value="52">TF 1600m</option><option value="60">TF 3200m</option></select> <button class="inside" onclick="beginzecode()">Submit</button></nav><div style="width: 800px"><canvas id="teamScores"></canvas></div><div id="example-table"></div><script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script><script src="js/axios.min.js.js"></script><link href="css/tabulator.min.css" rel="stylesheet"><script type="text/javascript" src="js/tabulator.min.js"></script><script src="js/colors.js"></script><script src="js/functions.js"></script><script src="js/main.js"></script></body></html>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><title>athletic-data</title><link rel="stylesheet" href="css/style.css"></head><body><nav><a class="location-link" href="settings/">Settings</a> <input class="inside" placeholder="MeetID" id="meetinput"> <label class="inside" for="events">Choose an event:</label> <select class="inside" id="events"><option value="3218">XC 2 Mile</option><option value="4828">XC 3 Mile</option><option value="5000">XC 5k</option><option value="52">TF 1600m</option><option value="60">TF 3200m</option></select> <button class="inside" onclick="beginzecode()">Submit</button></nav><div style="width: 800px"><canvas id="teamScores"></canvas></div><div id="example-table"></div><script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script><script src="js/axios.min.js.js"></script><link href="css/tabulator.min.css" rel="stylesheet"><script type="text/javascript" src="js/tabulator.min.js"></script><script src="js/colors.js"></script><script src="js/functions.js"></script><script src="js/main.js"></script><script>document.addEventListener("DOMContentLoaded", () => {
+        const savedSettings = localStorage.getItem("settings");
+        if (savedSettings) {
+          const settings = JSON.parse(savedSettings);
+          applyTheme(settings.theme);
+        } else {
+          applyTheme("theme1");
+        }
+      });
+
+      function applyTheme(theme) {
+        const themes = {
+          theme1: {
+            "--bg": "#44475a",
+            "--fg": "#f8f8f2",
+            "--text": "#ffffff",
+            "--accent": "rgb(149, 128, 255)",
+            "--comment": "#6272a4",
+            "--darker": "#282a36",
+          },
+          theme2: {
+            "--bg": "#f5f5f5",
+            "--fg": "#333333",
+            "--text": "#000000",
+            "--accent": "rgb(0, 123, 255)",
+            "--comment": "#6c757d",
+            "--darker": "#e0e0e0",
+          },
+        };
+
+        const themeVariables = themes[theme] || themes["theme1"];
+        const root = document.documentElement;
+
+        for (const variable in themeVariables) {
+          if (themeVariables.hasOwnProperty(variable)) {
+            root.style.setProperty(variable, themeVariables[variable]);
+          }
+        }
+
+        if (theme === "theme2") {
+          document
+            .getElementById("meetinput")
+            .style.setProperty("color", themes["theme2"]["--text"]);
+
+          document
+            .getElementById("events")
+            .style.setProperty("color", themes["theme2"]["--text"]);
+        } else {
+          document.getElementById("meetinput").style.removeProperty("color");
+          document.getElementById("events").style.removeProperty("color");
+        }
+      }</script></body></html>
