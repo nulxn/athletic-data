@@ -19,6 +19,11 @@
       border: 2px solid var(--fg);
       transform: translateY(0);
       transition: transform 0.3s ease, background-color 0.3s, border-color 0.3s;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
 
     .settings-container:hover {
@@ -114,6 +119,62 @@
           </select>
         </form>
       </section>
+
+      <button class="inside" onclick="saveOptions()">Save</button>
     </main>
+
+    <script>
+      console.log(JSON.parse(localStorage.getItem("settings")).theme);
+      if (localStorage.getItem("settings") !== null) {
+        applyTheme(JSON.parse(localStorage.getItem("settings")).theme);
+      } else {
+        applyTheme("theme1");
+      }
+
+      var lang = document.getElementById("language-select").value;
+      var theme = document.getElementById("theme-select").value;
+
+      function applyTheme(theme) {
+        var themes = {
+          theme1: {
+            "--bg": "#44475a",
+            "--fg": "#f8f8f2",
+            "--text": "#ffffff",
+            "--accent": "rgb(149, 128, 255)",
+            "--comment": "#6272a4",
+            "--darker": "#282a36",
+          },
+          theme2: {
+            "--bg": "#f5f5f5",
+            "--fg": "#333333",
+            "--text": "#000000",
+            "--accent": "rgb(0, 123, 255)",
+            "--comment": "#6c757d",
+            "--darker": "#e0e0e0",
+          },
+        };
+
+        var themeVariables = themes[theme] || themes["theme1"];
+
+        var root = document.documentElement;
+
+        for (var variable in themeVariables) {
+          if (themeVariables.hasOwnProperty(variable)) {
+            root.style.setProperty(variable, themeVariables[variable]);
+          }
+        }
+      }
+
+      function saveOptions() {
+        var settings = {
+          lang: lang,
+          theme: theme,
+        };
+
+        console.log(settings);
+        applyTheme(settings.theme);
+        localStorage.setItem("settings", JSON.stringify(settings));
+      }
+    </script>
   </body>
 </html>
